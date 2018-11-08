@@ -1,6 +1,12 @@
 # CHaserLog
 
-Turn 0 が変 diff は [x,y,b] でなく [y,x,b]になってる
+CHaserReplay.rb
+ラズベリーパイのminecraftで ログファイルを表示する
+
+必要な準備は
+
+sudo gem install minecraft-pi-ruby
+
 
 
 
