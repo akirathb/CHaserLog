@@ -5,8 +5,7 @@ CHaserReplay.rb
 
 必要な準備は
 
-sudo gem install minecraft-pi-ruby
-
+sudo gem install minecraft-pi-ruby open-uri
 
 
 
