@@ -1,0 +1,69 @@
+18a19,34
+> require 'logger'
+> require 'date'
+> require 'json'
+> 
+> timestmp = DateTime.now.strftime('%Y%m%d%H%M%S')
+> @log = Logger.new('./CH-'+ timestmp + ".log")
+> 
+> @log.formatter = proc do |severity, datetime, progname, msg|
+> "#{msg}\n"
+> #  "#{severity}: #{datetime}:#{msg}\n"
+> end
+> 
+> @logmap_prev = []
+> @logmap = []
+> @diff = []
+>  
+86a103,104
+> 
+>   @logmap = map_d
+153a172,183
+> # マップを比較して差分を配列で返す
+> # 戻り値 [[x,y,data], ...  ]
+> 
+> def diffmap (ar1,ar2)
+>    result =  (0..(ar1.size - 1)).to_a.zip(ar2,ar1).reject{|i,x,y| x == y }.map{|i,x,y| (0..(y.size-1)).to_a.zip(x,y).reject{|j,z1,z2| z1 == z2}.map{|j,z1,z2| [j,i,z2]}}.flatten(1)
+>    if result.size < 2
+>      return result
+>    else
+>      return result.sort{|a,b| b[2]<=>a[2]}
+>    end
+> end
+> 
+218a249
+> 
+234a266,268
+> 
+>   @initmap = Marshal.load(Marshal.dump(@map)) 
+> 
+241a276
+> 
+249a285,287
+> @initmap = Marshal.load(Marshal.dump(@map)) 
+> @log.debug( {:turn => @turn,:player => "ready", :code => "*" , :score => {:cool => @score[0], :hot => @score[1] } , :diff => [],:map => @initmap}.to_json)
+> 
+288a327
+> 
+308a348,352
+>    if (@turn == 0 and i == 0)
+>      @log.debug( {:turn => -1,:player => "ready" , :code => "*" , :score => {:cool => @score[0], :hot => @score[1] } , :diff => diffmap(@logmap,@initmap),:map => @logmap}.to_json)
+>      @logmap_prev = @logmap
+>    end
+> 
+316a361
+>     @code0 = code
+441a487
+> 
+459a506,508
+>     @log.debug( {:turn => @turn,:player => ["cool","hot"][i], :code => @code0 , :score => {:cool => @score[0], :hot => @score[1] } ,:diff => diffmap(@logmap,@logmap_prev),:map => @logmap}.to_json)
+>     @logmap_prev = @logmap
+> 
+497a547,548
+> @log.debug( {:turn => @turn,:player => "end", :code => ["cool_win","hot_win","draw"][winner] , :score => {:cool => @score[0], :hot => @score[1] } , :diff => [],:map => @logmap}.to_json)
+> 
+523c574
+< 
+---
+> @log.close
+
