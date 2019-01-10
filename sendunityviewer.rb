@@ -4,6 +4,10 @@ require 'json'
 loc = "https://raw.githubusercontent.com/akirathb/CHaserLog/master/CH-20181108214143.log"
 ## proxy = ["http://host:port", "user","pass"]
 f=open(loc, {:proxy_http_basic_authentication => proxy})
+
+## file = loc.split("/")[-1]
+## f = open(file)
+
 one = f.gets # 先頭1行読み飛ばす
 
 one = f.gets
