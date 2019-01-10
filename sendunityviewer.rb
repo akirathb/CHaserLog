@@ -3,11 +3,11 @@ require 'json'
 
 loc = "https://raw.githubusercontent.com/akirathb/CHaserLog/master/CH-20181108214143.log"
 
-proxy = ["http://157.114.16.93:8080", "akira",""]
-file = OpenURI.open_uri(loc, {:proxy_http_basic_authentication => proxy})
+##proxy = ["http://157.114.16.93:8080", "akira",""]
+## file = OpenURI.open_uri(loc, {:proxy_http_basic_authentication => proxy})
 
 ## file = OpenURI.open_uri(loc) # Porxyなし
-## file = loc.split("/")[-1]    # カレントディレクトリにダウンロードしたログファイル
+file = loc.split("/")[-1]    # カレントディレクトリにダウンロードしたログファイル
 
 File.open(file, mode = "r") {|f| 
 
