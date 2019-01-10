@@ -1,9 +1,12 @@
 require 'open-uri'
 require 'json'
 
-## proxy = ["http://host:port", "user","pass"]
 loc = "https://raw.githubusercontent.com/akirathb/CHaserLog/master/CH-20181108214143.log"
-f=open(loc, {:proxy_http_basic_authentication => proxy})
+
+### proxy = ["http://host:port", "user","pass"]
+## fen=op(loc, {:proxy_http_basic_authentication => proxy})
+
+### file = OpenURI.open_uri(loc)
 
 ## file = loc.split("/")[-1]
 ## f = File.open(file, mode = "r")
