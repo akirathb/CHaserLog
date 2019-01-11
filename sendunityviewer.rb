@@ -11,19 +11,20 @@ file = loc.split("/")[-1]    # カレントディレクトリにダウンロー�
 
 File.open(file, mode = "r") {|f| 
 
-one = f.gets # 先頭1行読み飛ばす
+  one = f.gets # 先頭1行読み飛ばす
 
-one = f.gets
-map1 = JSON.parse(one)["map"]
-map1.each_with_index.each {|x,i|
-  x.each_with_index.each {|v,j|
-    json = "\"{\\\"i\\\":" + i.to_s + ", \\\"j\\\": "+ j.to_s  +  ", \\\"v\\\":"+ v.to_s + "}\""
-    puts json
+  one = f.gets
+  map1 = JSON.parse(one)["map"]
+  
+  map1.each_with_index.each {|x,i|
+    x.each_with_index.each {|v,j|
+      json = "\"{\\\"i\\\":" + i.to_s + ", \\\"j\\\": "+ j.to_s  +  ", \\\"v\\\":"+ v.to_s + "}\""
+      puts json
+      }
+    }
+
+  f.each_line {|line|
+    turn = JSON.parse(line)
+    p turn["diff"]
     }
   }
-
-f.each_line {|line|
- turn = JSON.parse(line)
-  p turn["diff"]
-  }
-}
