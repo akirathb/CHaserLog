@@ -18,7 +18,7 @@ File.open(file, mode = "r") {|f|
   
   map1.each_with_index.each {|x,i|
     x.each_with_index.each {|v,j|
-      json = "\"{\\\"i\\\":" + i.to_s + ", \\\"j\\\": "+ j.to_s  +  ", \\\"v\\\":"+ v.to_s + "}\""
+      json = "{\"i\":" + i.to_s + ", \"j\": "+ j.to_s  +  ", \"v\":"+ v.to_s + "}"
       puts json
       }
     }
